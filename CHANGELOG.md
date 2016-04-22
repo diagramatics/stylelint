@@ -1,3 +1,7 @@
+# Head
+
+- Added: `selector-no-qualifying-type` rule.
+
 # 6.1.0
 
 - Added: `comment-word-blacklist` rule.
