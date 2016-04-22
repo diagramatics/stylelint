@@ -1,3 +1,7 @@
+# HEAD
+
+- Fixed: `value-keyword-case` now accounts for camelCase function names (e.g. `optimizeSpeed`, `optimizeLegibility` and `geometricPrecision`) when the `lower` option is used.
+
 # 6.1.0
 
 - Added: `comment-word-blacklist` rule.

@@ -20,6 +20,12 @@ const ignoredCharacters = new Set([
   "+", "-", "/", "*", "%",
 ])
 
+const ignoredCamelCaseFunctionNames = {
+  "optimizespeed": "optimizeSpeed",
+  "optimizelegibility": "optimizeLegibility",
+  "geometricprecision": "geometricPrecision",
+}
+
 export default function (expectation, options) {
   return (root, result) => {
     const validOptions = validateOptions(result, ruleName, {
@@ -62,7 +68,18 @@ export default function (expectation, options) {
 
         if (ignoreKeywords.length > 0 && matchesStringOrRegExp(keyword, ignoreKeywords)) { return }
 
-        const expectedKeyword = expectation === "lower" ? keyword.toLowerCase() : keyword.toUpperCase()
+        const keywordLowerCase = keyword.toLocaleLowerCase()
+        let expectedKeyword = null
+
+        if (expectation === "lower"
+          && ignoredCamelCaseFunctionNames.hasOwnProperty(keywordLowerCase)
+        ) {
+          expectedKeyword = ignoredCamelCaseFunctionNames[keywordLowerCase]
+        } else if (expectation === "lower") {
+          expectedKeyword = keyword.toLowerCase()
+        } else {
+          expectedKeyword = keyword.toUpperCase()
+        }
 
         if (keyword === expectedKeyword) { return }
 
