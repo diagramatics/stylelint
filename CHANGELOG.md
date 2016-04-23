@@ -1,3 +1,7 @@
+# Head
+
+- Fixed: `selector-class-pattern` now ignores non-ouputting Less mixin definitions and called Less mixins.
+
 # 6.1.1
 
 - Fixed: documentation links to `selector-pseudo-class-parentheses-space-inside` and `selector-attribute-brackets-space-inside`.
